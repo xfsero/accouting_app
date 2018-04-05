@@ -1,6 +1,8 @@
 package com.stupidwind.myaccounting.fragment;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -11,10 +13,18 @@ public abstract class BaseFragment extends Fragment {
 
     protected String frag_name = "NULL";
 
-    public BaseFragment() {
+    protected Context mContext;
+
+    protected View rootView;
+
+    public BaseFragment(Context context) {
+        mContext = context;
         setFragName();
+        rootView = initView();
         initData();
     }
+
+    protected abstract View initView();
 
     /**
      * 初始化数据

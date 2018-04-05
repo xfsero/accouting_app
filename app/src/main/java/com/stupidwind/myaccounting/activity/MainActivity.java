@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
@@ -49,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragment() {
-        AccountFragment frag_account = new AccountFragment();
-        AccountingFragment frag_accounting = new AccountingFragment();
-        StatisticFragment frag_statistic = new StatisticFragment();
+        AccountFragment frag_account = new AccountFragment(this);
+        AccountingFragment frag_accounting = new AccountingFragment(this);
+        StatisticFragment frag_statistic = new StatisticFragment(this);
 
         fragments = new ArrayList<BaseFragment>();
 
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             if (null != itemTab) {
                 itemTab.setCustomView(R.layout.item_tl_custom);
                 TextView itemTv = (TextView) itemTab.getCustomView().findViewById(R.id.tv_tl_item);
+                itemTv.setGravity(Gravity.CENTER);
                 itemTv.setText(fragments.get(i).getFragName());
             }
         }

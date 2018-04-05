@@ -1,5 +1,6 @@
 package com.stupidwind.myaccounting.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
@@ -16,6 +17,15 @@ import android.widget.TextView;
 public class StatisticFragment extends BaseFragment {
 
     private TextView textView;
+
+    public StatisticFragment(Context context) {
+        super(context);
+    }
+
+    @Override
+    protected View initView() {
+        return null;
+    }
 
     @Override
     protected void initData() {
