@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\508dfc324fa2b7a9ebd5e4582f47ea5749cd0af3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_1b20bf2004958b1bcfae67b33e35740d9e5d5320.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\401fc64c0ec3e905f037f139923902942006fcca\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_79c5bfdf5f3788400f6a653b7b9b12c8f3d47b7a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\84cda06f2ea8abcacee4a16b119fb57db7337cd3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_fd50200891b7d06029e05cdefba1c388030a728f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\7a698b1c69005e27850ff918e32fda8d84e09886\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_dde479718e334857beca1e08eee886a838a0ae54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_1231db52c00db475ce2b4a7565aa18c35b78b45f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidSDK\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_7746369fa27cceb525736b4267461e18a05a6d43.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\21e3045994380906a9de17d6d308d1d235467d1b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_e288ffd682509db56b8970cbb205eed1788c757c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\88a22507420afd5b40d94199e254566e630f7e02\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_de6b6c136c66982ee21d06fabde178e7510106ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\375df3b382e093f61de651aa8e68b5af066c3f95\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_9c8e5c8361360ee86d3bb28a3b3b324f88978c70.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\dd161564a6566c5568cc4edb81c86dc511e129ea\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_a37fde326c3d1e5777164cb34654fb1450141c92.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\85312ea97f7ebff890f2d79fe08a92ddb99b465a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_2622291fbd2a4854e51d9de6d73c306a61092eef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\4914c7f8cf846a3ef7f1fe74575b4238391443bd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_0d4cbeef3e3ba7897eeb1b03e0dfcde00509daff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\3b0cfaddbdf851db62d4b32cb102d3fc4f1b98b6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_0cdec0c467c118c6f52f3778d3f06839ab2e018e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\1b426b45b257958c8d7e4112d1780e65817c3332\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_e2871609c3ec435f081cba41c78cceffe91edd45.jar" />
+    </item>
+
+</items>
