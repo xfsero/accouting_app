@@ -34,6 +34,9 @@ public class AccountingFragment extends BaseFragment {
         super(context);
     }
 
+    /**
+     * 初始化账单列表
+     */
     private void initList() {
         for (int i = 0; i < 3; i++) {
             AccoutingDetail accoutingDetail = new AccoutingDetail();
