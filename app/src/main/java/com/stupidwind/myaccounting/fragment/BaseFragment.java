@@ -3,7 +3,6 @@ package com.stupidwind.myaccounting.fragment;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * Created by 蠢风 on 2018/4/5.

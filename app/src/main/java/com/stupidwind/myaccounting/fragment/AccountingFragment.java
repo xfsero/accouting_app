@@ -3,18 +3,14 @@ package com.stupidwind.myaccounting.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccoutingItemAdapter;
-import com.stupidwind.myaccounting.model.AccoutingDetail;
+import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +22,7 @@ import java.util.List;
 
 public class AccountingFragment extends BaseFragment {
 
-    private List<AccoutingDetail> accoutingDetailList = new ArrayList<AccoutingDetail>();
+    private List<AccountingLog> accountingLogList = new ArrayList<AccountingLog>();
 
     private ListView lv_accouting_detail;
 
@@ -39,9 +35,9 @@ public class AccountingFragment extends BaseFragment {
      */
     private void initList() {
         for (int i = 0; i < 3; i++) {
-            AccoutingDetail accoutingDetail = new AccoutingDetail();
-            accoutingDetail.setAccoutingName("记账" + i);
-            accoutingDetailList.add(accoutingDetail);
+            AccountingLog accountingLog = new AccountingLog();
+            // TODO 自定义记账明细列表，测试用
+            accountingLogList.add(accountingLog);
         }
     }
 
@@ -69,7 +65,7 @@ public class AccountingFragment extends BaseFragment {
         initList();
 
         AccoutingItemAdapter adapter = new AccoutingItemAdapter(mContext,
-                R.layout.ll_item_accouting_detail, accoutingDetailList);
+                R.layout.ll_item_accouting_log, accountingLogList);
 
         lv_accouting_detail = (ListView) rootView.findViewById(R.id.lv_accouting_detail);
 

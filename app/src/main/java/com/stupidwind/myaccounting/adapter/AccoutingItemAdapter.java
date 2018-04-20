@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
-import com.stupidwind.myaccounting.model.AccoutingDetail;
+import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ import java.util.List;
  * Created by 蠢风 on 2018/4/5.
  */
 
-public class AccoutingItemAdapter extends ArrayAdapter<AccoutingDetail> {
+public class AccoutingItemAdapter extends ArrayAdapter<AccountingLog> {
 
     private int resourceId;
 
-    public AccoutingItemAdapter(Context context, int textViewResourceId, List<AccoutingDetail> objects) {
+    public AccoutingItemAdapter(Context context, int textViewResourceId, List<AccountingLog> objects) {
         super(context, textViewResourceId, objects);
         this.resourceId = textViewResourceId;
     }
@@ -31,11 +31,16 @@ public class AccoutingItemAdapter extends ArrayAdapter<AccoutingDetail> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        AccoutingDetail accoutingDetail = getItem(position);
-        View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        AccountingLog accountingLog = getItem(position);
+        View view;
+
+        if (null == convertView) {
+            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        } else {
+            view = convertView;
+        }
 
         TextView textView = (TextView) view.findViewById(R.id.tv_accouting_detail_name);
-        textView.setText(accoutingDetail.getAccoutingName());
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(30);
 
