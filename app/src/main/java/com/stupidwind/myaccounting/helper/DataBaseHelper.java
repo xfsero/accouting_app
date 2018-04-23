@@ -27,6 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             "account_id integer, " +
             "accounting_type varchar(10), " +
             "accounting_event_id integer, " +
+            "accounting_event_name varchar(30), " +
             "accounting_value integer, " +
             "accounting_time datetime, " +
             "remark varchar(100) )";

@@ -84,21 +84,21 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\蠢风\.android\build-cache\466353e7370a4576fbdc8b3b249fa6370d309cb9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_4b07c064f20529d699d7f803ab52084dd5a77bf1.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\蠢风\.android\build-cache\dd161564a6566c5568cc4edb81c86dc511e129ea\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
         <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_a37fde326c3d1e5777164cb34654fb1450141c92.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\蠢风\.android\build-cache\85312ea97f7ebff890f2d79fe08a92ddb99b465a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_2622291fbd2a4854e51d9de6d73c306a61092eef.jar" />
     </item>
     <item
         is-multidex="false"
@@ -120,12 +120,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\蠢风\.android\build-cache\1b426b45b257958c8d7e4112d1780e65817c3332\output\jars\classes.jar"
+        jar="C:\Users\蠢风\.android\build-cache\19552a24ac259d7b2d33f2bc07b158be7bd92950\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
-        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_e2871609c3ec435f081cba41c78cceffe91edd45.jar" />
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="D:\Develop\MyAccounting\app\build\intermediates\pre-dexed\debug\classes_f5601c80c729fb7e6ed9f6ffa55a15d38bd2d284.jar" />
     </item>
 
 </items>

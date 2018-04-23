@@ -1,5 +1,6 @@
 package com.stupidwind.myaccounting.activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FloatingActionButton fab_accounting;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private List<BaseFragment> fragments;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.tl_tab);
         viewPager = (ViewPager) findViewById(R.id.vp_content);
+        fab_accounting = (FloatingActionButton) findViewById(R.id.fab_accounting);
+        fab_accounting.setVisibility(View.GONE);
 
         initFragment();
         initTab();
@@ -84,6 +89,28 @@ public class MainActivity extends AppCompatActivity {
                 itemTv.setText(fragments.get(i).getFragName());
             }
         }
+
+        // 设置底部导航栏的选中监听器
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab == tabLayout.getTabAt(1)) {
+                    fab_accounting.setVisibility(View.VISIBLE);
+                } else {
+                    fab_accounting.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         tabLayout.getTabAt(0).getCustomView().setSelected(true);
     }

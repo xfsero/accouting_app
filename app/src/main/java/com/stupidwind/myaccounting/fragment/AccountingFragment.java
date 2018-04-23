@@ -3,13 +3,17 @@ package com.stupidwind.myaccounting.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccoutingItemAdapter;
+import com.stupidwind.myaccounting.dao.AccountingLogDao;
+import com.stupidwind.myaccounting.dao.AccountingLogDaoImpl;
 import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.ArrayList;
@@ -24,21 +28,15 @@ public class AccountingFragment extends BaseFragment {
 
     private List<AccountingLog> accountingLogList = new ArrayList<AccountingLog>();
 
-    private ListView lv_accouting_detail;
+    private ListView lv_accouting_log;
+
+    // 记账明细记录Dao
+    AccountingLogDao accountingLogDao = new AccountingLogDaoImpl(getContext());
+
+    private Button btn_add_accounting;
 
     public AccountingFragment(Context context) {
         super(context);
-    }
-
-    /**
-     * 初始化账单列表
-     */
-    private void initList() {
-        for (int i = 0; i < 3; i++) {
-            AccountingLog accountingLog = new AccountingLog();
-            // TODO 自定义记账明细列表，测试用
-            accountingLogList.add(accountingLog);
-        }
     }
 
     @Override
@@ -62,14 +60,32 @@ public class AccountingFragment extends BaseFragment {
             rootView = inflater.inflate(R.layout.ll_acounting, container, false);
         }
 
-        initList();
+        final AccoutingItemAdapter adapter = new AccoutingItemAdapter(mContext, accountingLogList);
 
-        AccoutingItemAdapter adapter = new AccoutingItemAdapter(mContext,
-                R.layout.ll_item_accouting_log, accountingLogList);
+        lv_accouting_log = (ListView) rootView.findViewById(R.id.lv_accounting_log);
+        lv_accouting_log.setAdapter(adapter);
 
-        lv_accouting_detail = (ListView) rootView.findViewById(R.id.lv_accouting_detail);
+        btn_add_accounting = (Button) rootView.findViewById(R.id.btn_add_accounting);
 
-        lv_accouting_detail.setAdapter(adapter);
+        // 设置按钮监听器
+        btn_add_accounting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO 新增数据项
+                AccountingLog vo = new AccountingLog();
+                vo.setUser_id(1);
+                vo.setAccounting_event_id(101);
+                vo.setAccounting_event_name("生活费");
+                vo.setAccount_id(10);
+                vo.setAccounting_type("out");
+                vo.setAccounting_value(100);
+                vo.setRemark("备注");
+                accountingLogList.add(vo);
+                Log.i("添加账单项", "onClick: add 成功! list : " + accountingLogList.toString());
+                adapter.notifyDataSetChanged();
+                //accountingLogDao.add(vo);
+            }
+        });
 
         return rootView;
     }

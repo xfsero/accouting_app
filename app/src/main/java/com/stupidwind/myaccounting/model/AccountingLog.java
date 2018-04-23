@@ -24,6 +24,9 @@ public class AccountingLog {
     // 记账事件id
     private Integer accounting_event_id;
 
+    // 记账事件名称
+    private String accounting_event_name;
+
     // 记账金额值
     private Integer accounting_value;
 
@@ -73,6 +76,14 @@ public class AccountingLog {
         this.accounting_event_id = accounting_event_id;
     }
 
+    public String getAccounting_event_name() {
+        return accounting_event_name;
+    }
+
+    public void setAccounting_event_name(String accounting_event_name) {
+        this.accounting_event_name = accounting_event_name;
+    }
+
     public Integer getAccounting_value() {
         return accounting_value;
     }
@@ -105,6 +116,7 @@ public class AccountingLog {
                 ", accounting_log_id=" + accounting_log_id +
                 ", accounting_type='" + accounting_type + '\'' +
                 ", accounting_event_id=" + accounting_event_id +
+                ", accounting_event_name='" + accounting_event_name + '\'' +
                 ", accounting_value=" + accounting_value +
                 ", accounting_time=" + accounting_time +
                 ", remark='" + remark + '\'' +
