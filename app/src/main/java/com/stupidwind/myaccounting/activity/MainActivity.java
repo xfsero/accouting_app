@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -50,12 +51,32 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.vp_content);
         fab_accounting = (FloatingActionButton) findViewById(R.id.fab_accounting);
         fab_accounting.setVisibility(View.GONE);
+        fab_accounting.getBackground().mutate().setAlpha(255);
 
         fab_accounting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AccountingActivity.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        fab_accounting.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    // 默认为半透明
+                    case MotionEvent.ACTION_UP :
+                        //fab_accounting.getBackground().mutate().setAlpha(200);
+                        break;
+                    // 按住为不透明
+                    case MotionEvent.ACTION_DOWN :
+                        //fab_accounting.getBackground().mutate().setAlpha(255);
+                        break;
+                }
+
+                return false;
             }
         });
 
