@@ -1,5 +1,6 @@
 package com.stupidwind.myaccounting.activity;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.vp_content);
         fab_accounting = (FloatingActionButton) findViewById(R.id.fab_accounting);
         fab_accounting.setVisibility(View.GONE);
+
+        fab_accounting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AccountingActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
 
         initFragment();
         initTab();

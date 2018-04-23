@@ -7,33 +7,34 @@
     android:orientation="vertical"
     tools:context="com.stupidwind.myaccounting.activity.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/vp_content"
-        />
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:id="@+id/fab_accounting"
-        app:backgroundTint="@color/colorPrimary"
-        app:elevation="8dp"/>
-
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-
-
-        <android.support.design.widget.TabLayout
+        <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:id="@+id/tl_tab" />
+            android:layout_height="match_parent"
+            android:id="@+id/vp_content"
+            />
 
-    </android.support.design.widget.CoordinatorLayout>o
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
+            android:id="@+id/fab_accounting"
+            android:src="@drawable/plus_icon"
+            app:backgroundTint="#e94220"
+            app:elevation="8dp"/>
 
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/tl_tab" />
 
 </LinearLayout>
