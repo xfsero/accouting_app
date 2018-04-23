@@ -105,6 +105,7 @@ public class AccountingActivity extends AppCompatActivity {
         views.add(gv_pay);
 
         mViewPager.setAdapter(new AccountingPagerAdapter(views));
+        mViewPager.setCurrentItem(1);
     }
 
     /**
@@ -162,6 +163,7 @@ public class AccountingActivity extends AppCompatActivity {
 
         commonNavigator.setLeftPadding(140);
         magicIndicator.setNavigator(commonNavigator);
+        magicIndicator.onPageSelected(1);
     }
 
     /**
