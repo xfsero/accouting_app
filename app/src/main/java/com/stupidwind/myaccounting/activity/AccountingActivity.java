@@ -2,21 +2,19 @@ package com.stupidwind.myaccounting.activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccountGridViewAdapter;
 import com.stupidwind.myaccounting.adapter.AccountingPagerAdapter;
+import com.stupidwind.myaccounting.constant.AccountConstant;
+import com.stupidwind.myaccounting.dao.AccountEventDao;
+import com.stupidwind.myaccounting.model.AccountEvent;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -25,7 +23,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.WrapPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.util.ArrayList;
@@ -43,10 +40,12 @@ public class AccountingActivity extends AppCompatActivity {
     private Button btn_back;
     private Button btn_accounting_add;
 
-    private final String[] accoutTypeTitles = {"收入", "支出"};
-    
-    private List<String> incomeEventList;
-    private List<String> payEventList;
+    private final String[] accoutTypeTitles = {AccountConstant.Account_Type.INCOME, AccountConstant.Account_Type.OUTPUT};
+
+    private AccountEventDao accountEventDao;
+
+    private List<AccountEvent> incomeEventList;
+    private List<AccountEvent> outputEventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +55,27 @@ public class AccountingActivity extends AppCompatActivity {
         initData();
         initView();
     }
-    
+
     /**
      * 初始化数据
      * @author StupidWind
      * created at 2018/4/23 19:03
      */
     private void initData() {
-        incomeEventList = new ArrayList<String>();
-        payEventList = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
-            incomeEventList.add("收入事件" + i);
-            payEventList.add("支出事件" + i);
-        }
+
+        initDao();
+
+        incomeEventList = accountEventDao.listByType(100, "income");
+        outputEventList = accountEventDao.listByType(100, "output");
+    }
+
+    /**
+     * 初始化dao
+     * @author StupidWind
+     * created at 2018/4/24 18:07
+     */
+    private void initDao() {
+        accountEventDao = new AccountEventDao(this);
     }
 
     /**
@@ -99,10 +106,10 @@ public class AccountingActivity extends AppCompatActivity {
         List<View> views = new ArrayList<View>();
 
         GridView gv_income = getGridView(this, incomeEventList);
-        GridView gv_pay = getGridView(this, payEventList);
+        GridView gv_output = getGridView(this, outputEventList);
 
         views.add(gv_income);
-        views.add(gv_pay);
+        views.add(gv_output);
 
         mViewPager.setAdapter(new AccountingPagerAdapter(views));
         mViewPager.setCurrentItem(1);
@@ -113,7 +120,7 @@ public class AccountingActivity extends AppCompatActivity {
      * @author StupidWind
      * created at 2018/4/23 20:08
      */
-    public GridView getGridView(Context context, List<String> dataList) {
+    public GridView getGridView(Context context, List<AccountEvent> dataList) {
         GridView gridView = new GridView(context);
         gridView.setNumColumns(5);
         gridView.setAdapter(new AccountGridViewAdapter(context, dataList));

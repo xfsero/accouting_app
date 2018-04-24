@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
+import com.stupidwind.myaccounting.model.AccountEvent;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ import java.util.List;
 public class AccountGridViewAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> mdatas;
+    private List<AccountEvent> mdatas;
 
-    public AccountGridViewAdapter(Context mContext, List<String> mdatas) {
+    public AccountGridViewAdapter(Context mContext, List<AccountEvent> mdatas) {
         this.mContext = mContext;
         this.mdatas = mdatas;
     }
@@ -48,6 +49,7 @@ public class AccountGridViewAdapter extends BaseAdapter {
 
         if (null == convertView) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.gv_account_event_item, null);
+
             holder = new ViewHolder();
             holder.iv_event_image = (ImageView) convertView.findViewById(R.id.iv_event_image);
             holder.tv_event_name = (TextView) convertView.findViewById(R.id.tv_event_name);
@@ -56,7 +58,7 @@ public class AccountGridViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.tv_event_name.setText(mdatas.get(position));
+        holder.tv_event_name.setText(mdatas.get(position).getAccount_event_name());
 
         return convertView;
     }

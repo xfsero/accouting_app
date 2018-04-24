@@ -12,8 +12,6 @@ import android.widget.ListView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccoutingItemAdapter;
-import com.stupidwind.myaccounting.dao.AccountingLogDao;
-import com.stupidwind.myaccounting.dao.AccountingLogDaoImpl;
 import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ public class AccountingFragment extends BaseFragment {
     private ListView lv_accouting_log;
 
     // 记账明细记录Dao
-    AccountingLogDao accountingLogDao = new AccountingLogDaoImpl(getContext());
 
     private Button btn_add_accounting;
 

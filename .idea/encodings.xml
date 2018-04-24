@@ -6,5 +6,7 @@
     <file url="file://E:/蠢风/Study/毕业设计/基于Android平台的个人理财软件设计与实验/quickmark-master/quickmark-master/MoneyCharge/src/cwp/moneycharge/dao/AccountDAO.java" charset="GBK" />
     <file url="file://E:/蠢风/Study/毕业设计/基于Android平台的个人理财软件设计与实验/quickmark-master/quickmark-master/MoneyCharge/src/cwp/moneycharge/dao/DBOpenHelper.java" charset="GBK" />
     <file url="file://E:/蠢风/Study/毕业设计/基于Android平台的个人理财软件设计与实验/quickmark-master/quickmark-master/MoneyCharge/src/cwp/moneycharge/dao/IncomeDAO.java" charset="GBK" />
+    <file url="file://E:/蠢风/Study/毕业设计/基于Android平台的个人理财软件设计与实验/quickmark-master/quickmark-master/MoneyCharge/src/cwp/moneycharge/dao/ItypeDAO.java" charset="GBK" />
+    <file url="file://E:/蠢风/Study/毕业设计/基于Android平台的个人理财软件设计与实验/quickmark-master/quickmark-master/MoneyCharge/src/cwp/moneycharge/dao/PayDAO.java" charset="GBK" />
   </component>
 </project>
