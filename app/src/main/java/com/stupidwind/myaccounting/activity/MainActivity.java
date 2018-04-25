@@ -10,21 +10,26 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
+import com.stupidwind.myaccounting.constant.AccountConstant;
 import com.stupidwind.myaccounting.fragment.AccountFragment;
 import com.stupidwind.myaccounting.fragment.AccountingFragment;
 import com.stupidwind.myaccounting.fragment.BaseFragment;
 import com.stupidwind.myaccounting.fragment.StatisticFragment;
+import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private FloatingActionButton fab_accounting;
     private TabLayout tabLayout;
@@ -32,13 +37,26 @@ public class MainActivity extends AppCompatActivity {
     private List<BaseFragment> fragments;
     private ContentPagerAdapter contentAdapter;
 
+    private static final int RESULT_CODE_ACCOUNT = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initView();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CODE_ACCOUNT) { // 记账活动返回记账信息
+            Bundle bundle = data.getExtras();
+            if (null != bundle) {
+                AccountingLog ac_log = bundle.getParcelable("account_log");
+                Log.i(TAG, "onActivityResult: " + ac_log.toString());
+            }
+        }
     }
 
     /**
@@ -57,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AccountingActivity.class);
-                startActivityForResult(intent, 1);
+                intent.putExtra("user_id", AccountConstant.user_id);
+                startActivityForResult(intent, RESULT_CODE_ACCOUNT);
             }
         });
 

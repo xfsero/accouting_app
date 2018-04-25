@@ -36,23 +36,40 @@
 
     <!-- 记账类型、金额 -->
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="60dp">
 
         <!-- 记账类型图标 -->
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:id="@+id/iv_cur_event_image"/>
 
         <!-- 记账类型名称 -->
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:id="@+id/tv_cur_event_name"/>
 
         <!-- 记账金额 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:layout_marginRight="18dp"
+            android:inputType="number|numberDecimal"
+            android:hint="0.00"
+            android:textSize="40dp"
+            android:textColor="#A1A1A1"
+            android:textStyle="bold"
+            android:id="@+id/et_account_value"/>
 
     </LinearLayout>
 
@@ -67,5 +84,23 @@
             android:id="@+id/vp_accouting"/>
 
     </LinearLayout>
+
+    <!-- TODO 设计软键盘 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.inputmethodservice.KeyboardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_keyboard_view"
+            android:layout_alignParentBottom="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="#3E404C"
+            android:keyTextColor="#ffffff"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

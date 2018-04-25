@@ -1,13 +1,18 @@
 package com.stupidwind.myaccounting.activity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccountGridViewAdapter;
@@ -15,6 +20,8 @@ import com.stupidwind.myaccounting.adapter.AccountingPagerAdapter;
 import com.stupidwind.myaccounting.constant.AccountConstant;
 import com.stupidwind.myaccounting.dao.AccountEventDao;
 import com.stupidwind.myaccounting.model.AccountEvent;
+import com.stupidwind.myaccounting.model.AccountingLog;
+import com.stupidwind.myaccounting.util.KeyboardUtil;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -35,23 +42,30 @@ import java.util.List;
  */
 public class AccountingActivity extends AppCompatActivity {
 
+    private Context ctx;
+    private Activity act;
     private MagicIndicator magicIndicator;
     private ViewPager mViewPager;
     private Button btn_back;
     private Button btn_accounting_add;
-
+    private TextView tv_cur_event_name;
+    private EditText et_account_value;
     private final String[] accoutTypeTitles = {AccountConstant.Account_Type.INCOME, AccountConstant.Account_Type.OUTPUT};
-
     private AccountEventDao accountEventDao;
 
     private List<AccountEvent> incomeEventList;
     private List<AccountEvent> outputEventList;
+    private AccountingLog ac_log = new AccountingLog();
+
+    private static final int RESULT_CODE_ACCOUNT = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accounting);
-        
+        ctx = this;
+        act = this;
+
         initData();
         initView();
     }
@@ -64,15 +78,15 @@ public class AccountingActivity extends AppCompatActivity {
     private void initData() {
 
         initDao();
-
         incomeEventList = accountEventDao.listByType(100, "income");
         outputEventList = accountEventDao.listByType(100, "output");
+        ac_log.setUser_id(getIntent().getIntExtra("user_id", -1));
     }
 
     /**
      * 初始化dao
      * @author StupidWind
-     * created at 2018/4/24 18:07
+     * created at 2018/4/25 16:18
      */
     private void initDao() {
         accountEventDao = new AccountEventDao(this);
@@ -86,6 +100,8 @@ public class AccountingActivity extends AppCompatActivity {
     private void initView() {
         btn_back = (Button) findViewById(R.id.btn_accounting_back);
         btn_accounting_add = (Button) findViewById(R.id.btn_accounting_add);
+        tv_cur_event_name = (TextView) findViewById(R.id.tv_cur_event_name);
+        et_account_value = (EditText) findViewById(R.id.et_account_value);
 
         initViewPager();
         initIndicator();
@@ -123,7 +139,9 @@ public class AccountingActivity extends AppCompatActivity {
     public GridView getGridView(Context context, List<AccountEvent> dataList) {
         GridView gridView = new GridView(context);
         gridView.setNumColumns(5);
-        gridView.setAdapter(new AccountGridViewAdapter(context, dataList));
+        AccountGridViewAdapter adapter = new AccountGridViewAdapter(context, dataList, ac_log);
+        adapter.attachEventName(tv_cur_event_name);
+        gridView.setAdapter(adapter);
         return gridView;
     }
 
@@ -147,6 +165,7 @@ public class AccountingActivity extends AppCompatActivity {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                 simplePagerTitleView.setText(accoutTypeTitles[index]);
+                simplePagerTitleView.setTextSize(18);
                 simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#e94220"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +187,7 @@ public class AccountingActivity extends AppCompatActivity {
             }
         });
 
-        commonNavigator.setLeftPadding(140);
+        commonNavigator.setLeftPadding(125);
         magicIndicator.setNavigator(commonNavigator);
         magicIndicator.onPageSelected(1);
     }
@@ -189,6 +208,17 @@ public class AccountingActivity extends AppCompatActivity {
         btn_accounting_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 添加账单
+                double ac_value = Double.valueOf(et_account_value.getText().toString());
+
+                ac_log.setAccounting_value(ac_value);
+
+                Intent intent = getIntent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("account_log", ac_log);
+                intent.putExtras(bundle);
+                setResult(RESULT_CODE_ACCOUNT, intent);
+
                 finish();
             }
         });
@@ -208,6 +238,17 @@ public class AccountingActivity extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
                 magicIndicator.onPageScrollStateChanged(state);
+            }
+        });
+
+        // 设置记账金额编辑框的监听器
+        et_account_value.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // 弹出键盘
+                // TODO 设置软键盘
+                // new KeyboardUtil(ctx, act, et_account_value).showKeyBoard();
+                return false;
             }
         });
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.model.AccountEvent;
+import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.List;
 
@@ -20,11 +21,18 @@ import java.util.List;
 public class AccountGridViewAdapter extends BaseAdapter {
 
     private Context mContext;
+    private TextView tv_cur_evnet_name;
     private List<AccountEvent> mdatas;
+    private AccountingLog ac_log;
 
-    public AccountGridViewAdapter(Context mContext, List<AccountEvent> mdatas) {
+    public AccountGridViewAdapter(Context mContext, List<AccountEvent> mdatas, AccountingLog ac_log) {
         this.mContext = mContext;
         this.mdatas = mdatas;
+        this.ac_log = ac_log;
+    }
+
+    public void attachEventName(TextView event_name) {
+        this.tv_cur_evnet_name = event_name;
     }
 
     @Override
@@ -43,9 +51,9 @@ public class AccountGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder ;
+        final ViewHolder holder ;
 
         if (null == convertView) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.gv_account_event_item, null);
@@ -53,6 +61,17 @@ public class AccountGridViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.iv_event_image = (ImageView) convertView.findViewById(R.id.iv_event_image);
             holder.tv_event_name = (TextView) convertView.findViewById(R.id.tv_event_name);
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tv_cur_evnet_name.setText(mdatas.get(position).getAccount_event_name());
+                    ac_log.setAccounting_event_name(mdatas.get(position).getAccount_event_name());
+                    ac_log.setAccounting_event_id(mdatas.get(position).getAccount_event_id());
+                    ac_log.setAccounting_type(mdatas.get(position).getAccount_type());
+                }
+            });
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
