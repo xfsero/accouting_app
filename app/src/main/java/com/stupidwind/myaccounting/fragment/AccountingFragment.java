@@ -16,11 +16,15 @@ import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.activity.AccountingActivity;
 import com.stupidwind.myaccounting.adapter.AccoutingItemAdapter;
 import com.stupidwind.myaccounting.constant.AccountConstant;
+import com.stupidwind.myaccounting.dao.AccountEventDao;
 import com.stupidwind.myaccounting.dao.AccountLogDao;
+import com.stupidwind.myaccounting.model.AccountEvent;
 import com.stupidwind.myaccounting.model.AccountingLog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 记账页面
@@ -30,11 +34,15 @@ import java.util.List;
 public class AccountingFragment extends BaseFragment {
     private static final String TAG = AccountingFragment.class.getSimpleName();
 
-    private List<AccountingLog> accountingLogList = new ArrayList<AccountingLog>();
     private ListView lv_accouting_log;
     private FloatingActionButton fab_accounting;
     private AccoutingItemAdapter adapter;
     private AccountLogDao accountLogDao;
+    private AccountEventDao accountEventDao;
+
+    private List<AccountingLog> accountingLogList = new ArrayList<AccountingLog>();
+    private Map<Integer, AccountEvent> accountEventMap = new HashMap<Integer, AccountEvent>();
+
     private static final int RESULT_CODE_ACCOUNT = 101;
 
     public AccountingFragment(Context context) {
@@ -54,8 +62,27 @@ public class AccountingFragment extends BaseFragment {
     @Override
     protected void initData() {
         accountLogDao = new AccountLogDao(mContext);
+        accountEventDao = new AccountEventDao(mContext);
         accountingLogList = accountLogDao.listAllByUserId(AccountConstant.user_id);
+        accountEventMap = accountEventDao.getAllByUserId(AccountConstant.user_id);
+
+        setEventName(accountingLogList);
         adapter = new AccoutingItemAdapter(mContext, accountingLogList);
+    }
+
+    /**
+     * 设置事件名称
+     * @author StupidWind
+     * created at 2018/4/25 22:51
+     */
+    private void setEventName(List<AccountingLog> ac_log_list) {
+        Integer event_id;
+        String event_name;
+        for (AccountingLog ac_log : ac_log_list) {
+            event_id = ac_log.getAccounting_event_id();
+            event_name = accountEventMap.get(event_id).getAccount_event_name();
+            ac_log.setAccounting_event_name(event_name);
+        }
     }
 
     @Override

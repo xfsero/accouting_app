@@ -8,7 +8,9 @@ import com.stupidwind.myaccounting.helper.DataBaseHelper;
 import com.stupidwind.myaccounting.model.AccountEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 记账事件类型Dao
@@ -76,4 +78,35 @@ public class AccountEventDao {
         return list;
     }
 
+    /**
+     * 获取所有的事件类型列表 （根据用户id）
+     * @author StupidWind
+     * created at 2018/4/25 22:49
+     */
+    public Map<Integer, AccountEvent> getAllByUserId(Integer _id) {
+        
+        db = helper.getReadableDatabase();
+        
+        Cursor cursor = db.query(TABLE_NAME, new String[] {"_id", "account_event_id", "account_event_name", "image_id", "account_type"},
+                "_id=?", new String[]{String.valueOf(_id)}, null, null, null);
+        
+        Map<Integer, AccountEvent> map = new HashMap<Integer, AccountEvent>();
+
+        while (cursor.moveToNext()) {
+            AccountEvent vo = new AccountEvent();
+            vo.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+            vo.setAccount_event_id(cursor.getInt(cursor.getColumnIndex("account_event_id")));
+            vo.setAccount_event_name(cursor.getString(cursor.getColumnIndex("account_event_name")));
+            vo.setImage_id(cursor.getInt(cursor.getColumnIndex("image_id")));
+            vo.setAccount_type(cursor.getString(cursor.getColumnIndex("account_type")));
+
+            map.put(vo.getAccount_event_id(), vo);
+        }
+        
+        cursor.close();
+        db.close();
+        
+        return map;
+    }
+    
 }
