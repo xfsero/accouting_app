@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.constant.AccountConstant;
+import com.stupidwind.myaccounting.dao.AccountLogDao;
 import com.stupidwind.myaccounting.fragment.AccountFragment;
 import com.stupidwind.myaccounting.fragment.AccountingFragment;
 import com.stupidwind.myaccounting.fragment.BaseFragment;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private FloatingActionButton fab_accounting;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private List<BaseFragment> fragments;
@@ -44,19 +44,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initData();
         initView();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_CODE_ACCOUNT) { // 记账活动返回记账信息
-            Bundle bundle = data.getExtras();
-            if (null != bundle) {
-                AccountingLog ac_log = bundle.getParcelable("account_log");
-                Log.i(TAG, "onActivityResult: " + ac_log.toString());
-            }
-        }
+    /**
+     * 初始化数据
+     * @author StupidWind
+     * created at 2018/4/25 21:10
+     */
+    private void initData() {
+
     }
 
     /**
@@ -67,37 +65,6 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.tl_tab);
         viewPager = (ViewPager) findViewById(R.id.vp_content);
-        fab_accounting = (FloatingActionButton) findViewById(R.id.fab_accounting);
-        fab_accounting.setVisibility(View.GONE);
-        fab_accounting.getBackground().mutate().setAlpha(255);
-
-        fab_accounting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AccountingActivity.class);
-                intent.putExtra("user_id", AccountConstant.user_id);
-                startActivityForResult(intent, RESULT_CODE_ACCOUNT);
-            }
-        });
-
-        fab_accounting.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    // 默认为半透明
-                    case MotionEvent.ACTION_UP :
-                        //fab_accounting.getBackground().mutate().setAlpha(200);
-                        break;
-                    // 按住为不透明
-                    case MotionEvent.ACTION_DOWN :
-                        //fab_accounting.getBackground().mutate().setAlpha(255);
-                        break;
-                }
-
-                return false;
-            }
-        });
 
         initFragment();
         initTab();
@@ -136,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView itemTv = (TextView) itemTab.getCustomView().findViewById(R.id.tv_tl_item);
                 itemTv.setGravity(Gravity.CENTER);
                 itemTv.setText(fragments.get(i).getFragName());
+                itemTab.setTag(fragments.get(i));
             }
         }
 
@@ -143,16 +111,18 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (tab == tabLayout.getTabAt(1)) {
-                    fab_accounting.setVisibility(View.VISIBLE);
-                } else {
-                    fab_accounting.setVisibility(View.GONE);
+
+                if (tab.getTag() instanceof AccountingFragment) {
+                    ((AccountingFragment) tab.getTag()).showFab();
                 }
+
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                if (tab.getTag() instanceof AccountingFragment) {
+                    ((AccountingFragment) tab.getTag()).hideFab();
+                }
             }
 
             @Override

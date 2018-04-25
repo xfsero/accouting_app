@@ -70,4 +70,15 @@ public class AccountEvent {
     public void setAccount_type(String account_type) {
         this.account_type = account_type;
     }
+
+    @Override
+    public String toString() {
+        return "AccountEvent{" +
+                "_id=" + _id +
+                ", image_id=" + image_id +
+                ", account_event_id=" + account_event_id +
+                ", account_event_name='" + account_event_name + '\'' +
+                ", account_type='" + account_type + '\'' +
+                '}';
+    }
 }

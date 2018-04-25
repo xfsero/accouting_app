@@ -20,6 +20,8 @@ public class AccountEventDao {
 
     private SQLiteDatabase db;
 
+    private static final String TABLE_NAME = "account_event";
+
     public AccountEventDao(Context context) {
         helper = new DataBaseHelper(context);
     }
@@ -39,7 +41,7 @@ public class AccountEventDao {
         cv.put("account_type", vo.getAccount_type());
         cv.put("image_id", vo.getImage_id());
 
-        db.insert("account_event", null, cv);
+        db.insert(TABLE_NAME, null, cv);
         db.close();
     }
 
@@ -52,7 +54,7 @@ public class AccountEventDao {
 
         db = helper.getReadableDatabase();
 
-        Cursor cursor = db.query("account_event", new String[] {"_id", "account_event_id", "account_event_name", "image_id", "account_type"},
+        Cursor cursor = db.query(TABLE_NAME, new String[] {"_id", "account_event_id", "account_event_name", "image_id", "account_type"},
                 "_id=? and account_type=?", new String[]{String.valueOf(_id), type}, null, null, null);
 
         List<AccountEvent> list = new ArrayList<>();
@@ -63,9 +65,13 @@ public class AccountEventDao {
             vo.setAccount_event_id(cursor.getInt(cursor.getColumnIndex("account_event_id")));
             vo.setAccount_event_name(cursor.getString(cursor.getColumnIndex("account_event_name")));
             vo.setImage_id(cursor.getInt(cursor.getColumnIndex("image_id")));
+            vo.setAccount_type(cursor.getString(cursor.getColumnIndex("account_type")));
 
             list.add(vo);
         }
+
+        cursor.close();
+        db.close();
 
         return list;
     }

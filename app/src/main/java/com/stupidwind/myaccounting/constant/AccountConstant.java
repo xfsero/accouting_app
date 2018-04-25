@@ -16,4 +16,10 @@ public class AccountConstant {
 
     }
 
+    public interface Frag_Name {
+
+        public static final String FRAG_ACCOUNT = "记账";
+
+    }
+
 }

@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <Button
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_add_accounting"
-        android:text="添加"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv_accounting_log"
-        >
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lv_accounting_log"
+            >
 
-    </ListView>
+        </ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
+            android:id="@+id/fab_accounting"
+            android:src="@drawable/plus_icon"
+            app:backgroundTint="#e94220"
+            app:elevation="8dp"/>
+
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

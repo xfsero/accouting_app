@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,8 @@ import java.util.List;
  * created at 2018/4/23 13:52
  */
 public class AccountingActivity extends AppCompatActivity {
+
+    private static final String TAG = AccountingActivity.class.getSimpleName();
 
     private Context ctx;
     private Activity act;
@@ -80,6 +83,9 @@ public class AccountingActivity extends AppCompatActivity {
         initDao();
         incomeEventList = accountEventDao.listByType(100, "income");
         outputEventList = accountEventDao.listByType(100, "output");
+
+        Log.i(TAG, "initData: incomeList :" + incomeEventList.toString());
+        Log.i(TAG, "initData: outputList :" + outputEventList.toString());
         ac_log.setUser_id(getIntent().getIntExtra("user_id", -1));
     }
 
