@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.stupidwind.myaccounting.R;
 import com.stupidwind.myaccounting.adapter.AccountGridViewAdapter;
@@ -81,11 +83,9 @@ public class AccountingActivity extends AppCompatActivity {
     private void initData() {
 
         initDao();
-        incomeEventList = accountEventDao.listByType(100, "income");
-        outputEventList = accountEventDao.listByType(100, "output");
+        incomeEventList = accountEventDao.listByType(AccountConstant.user_id, "income");
+        outputEventList = accountEventDao.listByType(AccountConstant.user_id, "output");
 
-        Log.i(TAG, "initData: incomeList :" + incomeEventList.toString());
-        Log.i(TAG, "initData: outputList :" + outputEventList.toString());
         ac_log.setUser_id(getIntent().getIntExtra("user_id", -1));
     }
 
@@ -108,6 +108,7 @@ public class AccountingActivity extends AppCompatActivity {
         btn_accounting_add = (Button) findViewById(R.id.btn_accounting_add);
         tv_cur_event_name = (TextView) findViewById(R.id.tv_cur_event_name);
         et_account_value = (EditText) findViewById(R.id.et_account_value);
+        et_account_value.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
 
         initViewPager();
         initIndicator();
@@ -214,13 +215,18 @@ public class AccountingActivity extends AppCompatActivity {
         btn_accounting_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 添加账单
-                double ac_value = Double.valueOf(et_account_value.getText().toString());
-
-                ac_log.setAccounting_value(ac_value);
 
                 Intent intent = getIntent();
                 Bundle bundle = new Bundle();
+                // 添加账单
+                double ac_value = Double.valueOf(et_account_value.getText().toString());
+
+                if (ac_value <= 0.0) {
+                    Toast.makeText(ctx, "记账金额不能为0", Toast.LENGTH_LONG);
+                    return ;
+                }
+
+                ac_log.setAccounting_value(ac_value);
                 bundle.putParcelable("account_log", ac_log);
                 intent.putExtras(bundle);
                 setResult(RESULT_CODE_ACCOUNT, intent);
@@ -253,10 +259,15 @@ public class AccountingActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 // 弹出键盘
                 // TODO 设置软键盘
-                // new KeyboardUtil(ctx, act, et_account_value).showKeyBoard();
+                //KeyboardUtil.showSoftInputFromWindow(act, et_account_value);
                 return false;
             }
         });
+    }
+
+    private boolean checkAccount() {
+
+        return false;
     }
 
 }

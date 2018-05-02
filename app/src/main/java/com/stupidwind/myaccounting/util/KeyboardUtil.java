@@ -5,6 +5,7 @@ import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.stupidwind.myaccounting.R;
@@ -29,7 +30,7 @@ public class KeyboardUtil {
         this.editText = editText;
 
         keyboard = new Keyboard(context, R.layout.keyboard_view);
-        keyboardView = (KeyboardView) activity.findViewById(R.id.account_keyboard_view);
+        // keyboardView = (KeyboardView) activity.findViewById(R.id.account_keyboard_view);
         keyboardView.setKeyboard(keyboard);
         keyboardView.setEnabled(true);
         keyboardView.setPreviewEnabled(true);
@@ -59,4 +60,15 @@ public class KeyboardUtil {
         }
     }
 
+    /**
+     * 弹出系统键盘
+     * @author StupidWind
+     * created at 2018/5/2 12:07
+     */
+    public static void showSoftInputFromWindow(Activity activity, EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
 }

@@ -17,13 +17,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "accounting.db"; // 数据库名称
 
-    private static final int version = 4; // 数据库版本
+    private static final int version = 5; // 数据库版本
 
     /**
      * 创建记账明细表
      */
     private static final String CREATE_ACCOUNT_LOG = "create table account_log (" +
             "_id INTEGER NOT NULL, " +
+            "account_log_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             "account_id INTEGER, " +
             "account_type INTEGER NOT NULL, " +
             "account_event_id INTEGER, " +

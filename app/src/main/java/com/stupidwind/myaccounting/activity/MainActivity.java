@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private List<BaseFragment> fragments;
     private ContentPagerAdapter contentAdapter;
 
-    private static final int RESULT_CODE_ACCOUNT = 101;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

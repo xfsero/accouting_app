@@ -63,9 +63,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="right"
+            android:background="@null"
+            android:cursorVisible="false"
             android:layout_marginRight="18dp"
+            android:digits="1234567890."
             android:inputType="number|numberDecimal"
-            android:hint="0.00"
+            android:text="0.00"
             android:textSize="40dp"
             android:textColor="#A1A1A1"
             android:textStyle="bold"
@@ -84,23 +87,5 @@
             android:id="@+id/vp_accouting"/>
 
     </LinearLayout>
-
-    <!-- TODO 设计软键盘 -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.inputmethodservice.KeyboardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/account_keyboard_view"
-            android:layout_alignParentBottom="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="#3E404C"
-            android:keyTextColor="#ffffff"
-            android:visibility="gone"/>
-
-    </RelativeLayout>
 
 </LinearLayout>

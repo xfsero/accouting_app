@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * Created by 蠢风 on 2018/4/23.
  */
-
 public class AccountingPagerAdapter extends PagerAdapter {
 
     private List<View> views = null;

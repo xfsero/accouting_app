@@ -30,7 +30,6 @@ import java.util.Map;
  * 记账页面
  * Created by 蠢风 on 2018/4/5.
  */
-
 public class AccountingFragment extends BaseFragment {
     private static final String TAG = AccountingFragment.class.getSimpleName();
 
@@ -166,10 +165,12 @@ public class AccountingFragment extends BaseFragment {
             Bundle bundle = data.getExtras();
             if (null != bundle) {
                 AccountingLog ac_log = bundle.getParcelable("account_log");
-                accountingLogList.add(ac_log);
-                accountLogDao.add(ac_log);
-                adapter.notifyDataSetChanged();
-                Log.i(TAG, "onActivityResult: 添加记账信息->" + ac_log.toString());
+                if (null != ac_log) {
+                    accountingLogList.add(ac_log);
+                    accountLogDao.add(ac_log);
+                    adapter.notifyDataSetChanged();
+                    Log.i(TAG, "onActivityResult: 添加记账信息->" + ac_log.toString());
+                }
             }
         }
     }
